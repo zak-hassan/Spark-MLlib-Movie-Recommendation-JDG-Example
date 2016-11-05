@@ -4,6 +4,7 @@ import akka.actor.Props
 import com.movie.recommendation.actor.RatingServiceActor
 import spray.http.MediaTypes
 import spray.routing.HttpService
+import com.movie.recommendation.actor.RatingService._
 
 /**
   * RecommendMovieService <br>
@@ -20,7 +21,7 @@ trait RecommendMovieService extends HttpService {
           respondWithMediaType(MediaTypes.`application/json`) {
             requestContext =>
               val movieservice = actorRefFactory.actorOf(Props(new RatingServiceActor(requestContext)))
-              val resp = movieservice ! "getRatings"
+              val resp = movieservice ! GetMovieRatings
           }
         }
       }
