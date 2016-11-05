@@ -17,8 +17,6 @@ import org.infinispan.spark.rdd.InfinispanRDD
  */
 object App {
 
-
-
   case class Params(
                      input: String = null,
                      kryo: Boolean = false,

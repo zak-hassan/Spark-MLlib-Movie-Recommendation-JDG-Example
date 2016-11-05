@@ -15,7 +15,7 @@ Java JDK 8
 1. Download Spark
 2. Set SPARK_HOME=/usr/local/spark
 
-## Use spark shell to query infinispan for results:
+## Use spark shell for interactive query of infinispan cache:
 
 3. Run:
 ```bash
@@ -51,13 +51,14 @@ scala> infinispanRDD.values.filter(r=> r.user==2).foreach(r => println(s" Users 
 
 ## To Run Demo:
 
-
+* Make sure jboss data grid is running
+* Make sure `$SPARK_HOME/sbin/start-all.sh`  is executed and both master and worker are running
+* On the master node run this
 ```bash
 
-cd recommendation
+cd recommend-mllib
 mvn clean install
-$SPARK_HOME/sbin/start-all.sh
-$SPARK_HOME/bin/spark-submit  --master  spark://localhost:7077 --class com.example.data.analytics.App target/recommedation-engine-1.0.0-SNAPSHOT-jar-with-dependencies.jar --rank 5 --numIterations 5 --lambda 1.0 --kryo /usr/local/spark/data/mllib/sample_movielens_data.txt
+$SPARK_HOME/bin/spark-submit  --master  spark://localhost:7077 --class com.example.data.analytics.App  target/recommend-mllib-1.0.0-SNAPSHOT-jar-with-dependencies.jar  --rank 5  --numIterations 5  --lambda 1.0  --kryo  /usr/local/spark/data/mllib/sample_movielens_data.txt
 
 ```
  
