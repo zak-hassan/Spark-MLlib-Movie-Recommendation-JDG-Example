@@ -1,6 +1,8 @@
 # Spark-Machine-Learning-Example
 Still in development DO NOT USE!
 
+[![Build Status](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example.svg?branch=master)](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example)
+
 ## Prerequisite:
 
 Download the following:
