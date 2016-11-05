@@ -2,5 +2,4 @@ sudo: required
 dist: trusty
 language: java
 jdk:
-  - oraclejdk7
   - oraclejdk8

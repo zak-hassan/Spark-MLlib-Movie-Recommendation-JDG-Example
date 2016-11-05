@@ -1,10 +1,14 @@
 # Spark-Machine-Learning-Example
 Still in development DO NOT USE!
 
+[![Build Status](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example.svg?branch=master)](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example)
+
 ## Prerequisite:
 
 Download the following:
+Java JDK 8 
 [jboss-datagrid-7.0.0-server link](https://developers.redhat.com/download-manager/file/jboss-datagrid-7.0.0-server.zip)
+[apache spark 2.0.0 link](http://d3kbcqa49mib13.cloudfront.net/spark-2.0.0-bin-hadoop2.7.tgz)
 
 
 
