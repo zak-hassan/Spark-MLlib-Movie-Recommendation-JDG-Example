@@ -7,5 +7,5 @@ package com.movie.recommendation.model
   *
   *  @author Zak Hassan <zak.hassan@redhat.com>
   */
-case class Rating(user: Int, product: Int, rating: Double)
+case class RatingX(user: Int, product: Int, rating: Double)
 
