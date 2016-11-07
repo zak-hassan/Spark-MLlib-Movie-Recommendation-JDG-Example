@@ -20,8 +20,8 @@
     <encoding>UTF-8</encoding>
     <scala.version>2.11.8</scala.version>
     <scala.compat.version>2.11</scala.compat.version>
+      <!--<infinispan.version>9.0.0.Alpha4</infinispan.version>-->
       <infinispan.version>8.3.0.Final-redhat-1</infinispan.version>
-
   </properties>
 
   <dependencies>

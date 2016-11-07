@@ -19,6 +19,7 @@ object App {
 
   case class Params(
                      input: String = null,
+                     infinispanHost: String="127.0.0.1",
                      kryo: Boolean = false,
                      numIterations: Int = 20,
                      lambda: Double = 1.0,
@@ -53,6 +54,9 @@ object App {
       opt[Unit]("implicitPrefs")
         .text("use implicit preference")
         .action((_, c) => c.copy(implicitPrefs = true))
+      opt[String]("infinispanHost")
+        .text("set different host ip for infinispan ${defaultParams.infinispanHost}")
+        .action((x,c)=> c.copy(infinispanHost = x))
       arg[String]("<input>")
         .required()
         .text("input paths to a MovieLens dataset of ratings")
@@ -74,9 +78,7 @@ object App {
     }
   }
 
-   def persistRecommendations(rec: RDD[(Int, Array[Rating])]) = {
 
-   }
 
    def run(params: Params): Unit = {
     val conf = new SparkConf().setAppName(s"MovieLensALS with $params")
@@ -159,7 +161,12 @@ object App {
     config.put("infinispan.client.hotrod.server_list","127.0.0.1:11522")
 
      val builder = new ConfigurationBuilder();
-     builder.addServer().host("127.0.0.1").port(11522);
+     //TODO: Get URL and port from env.
+
+     println(s"HOST IP FOR JDG: ${params.infinispanHost}")
+
+     builder.addServer().host(params.infinispanHost).port(11222);
+
      val cacheManager = new RemoteCacheManager(builder.build())
      val cache= cacheManager.getCache[Int, Rating]()
      var count=0

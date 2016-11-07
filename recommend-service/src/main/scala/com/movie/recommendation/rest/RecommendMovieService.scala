@@ -16,13 +16,16 @@ import com.movie.recommendation.actor.RatingService._
 trait RecommendMovieService extends HttpService {
   val route =
     pathPrefix("api") {
-      path("movieservice") {
-        get {
-          respondWithMediaType(MediaTypes.`application/json`) {
-            requestContext =>
-              val movieservice = actorRefFactory.actorOf(Props(new RatingServiceActor(requestContext)))
-              val resp = movieservice ! GetMovieRatings
-          }
+      path("movieservice" /Segment ) {
+        (page)=>{
+            get {
+              respondWithMediaType(MediaTypes.`application/json`) {
+                requestContext =>
+                  val movieservice = actorRefFactory.actorOf(Props(new RatingServiceActor(requestContext)))
+                  val resp = movieservice ! GetMovieRatings(page.toInt)
+              }
+
+            }
         }
       }
     }

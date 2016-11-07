@@ -1,6 +1,7 @@
 package com.movie.recommendation.rest
 
-import com.movie.recommendation.model.Rating
+import com.movie.recommendation.model.RatingX
+import org.apache.spark.mllib.recommendation.Rating
 import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 /**
