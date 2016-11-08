@@ -9,7 +9,8 @@ import com.movie.recommendation.actor.MovieServiceActor
 import spray.can.Http
 
 import scala.concurrent.duration._
-
+import spray.httpx.SprayJsonSupport._
+import spray.json.DefaultJsonProtocol._
 /**
   * The class bootstraps Spray web application and starts up the app.
   *

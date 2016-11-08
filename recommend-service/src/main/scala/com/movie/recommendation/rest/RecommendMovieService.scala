@@ -5,7 +5,8 @@ import com.movie.recommendation.actor.RatingServiceActor
 import spray.http.MediaTypes
 import spray.routing.HttpService
 import com.movie.recommendation.actor.RatingService._
-
+import spray.httpx.SprayJsonSupport._
+import spray.json.DefaultJsonProtocol._
 /**
   * RecommendMovieService <br>
   *

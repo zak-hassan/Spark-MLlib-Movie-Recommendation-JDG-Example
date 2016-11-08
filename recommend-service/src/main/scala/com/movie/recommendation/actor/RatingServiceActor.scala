@@ -2,10 +2,8 @@ package com.movie.recommendation.actor
 
 import akka.actor.Actor
 import akka.event.Logging
-import com.movie.recommendation.model.RatingX
-import com.movie.recommendation.rest.RatingJSONProtocol
 import org.apache.spark.mllib.recommendation.Rating
-import org.infinispan.client.hotrod.{RemoteCache, RemoteCacheManager}
+import org.infinispan.client.hotrod.RemoteCacheManager
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder
 import spray.routing.RequestContext
 
@@ -32,16 +30,15 @@ class RatingServiceActor(requestContext: RequestContext) extends Actor {
 
   override def receive: Receive = {
     case GetMovieRatings(page) => {
-      import RatingJSONProtocol._
-      import spray.httpx.SprayJsonSupport.sprayJsonMarshaller
+//      import com.movie.recommendation.rest.RatingWrapperJSONProtocol._
       // TODO: Replace stubs with JDG query code to pull ratings.
       log.info("Get movie ratings")
      // val conf = new SparkConf().setAppName("SparkInfinispan").setMaster("spark://master:7077")
 
       val builder = new ConfigurationBuilder();
+      val JdgIp= sys.env.get("JDG_HOST_IP").mkString("")
 
-      builder.addServer().host("127.0.0.1").port(11222);
-
+       builder.addServer().host(JdgIp).port(11222);
       val cacheManager = new RemoteCacheManager(builder.build())
       val cache= cacheManager.getCache[Int, Rating]()
       val list=ListBuffer.empty[Rating]
@@ -68,15 +65,14 @@ class RatingServiceActor(requestContext: RequestContext) extends Actor {
 
       log.info(s"page: $page ")
 
-      if(size != 0 && end <=size){
-
-        for( i <- (start to end)){
+      if(size != 0 && end <=size && page >=1 ){
+       for( i <- (start to end)){
           log.info(s"Num: $i")
           list+=cache.get(i)
         }
       }
+
       requestContext.complete(list.toList)
-      //requestContext.complete(list.collect())
       context.stop(self)
     }
     case _ => {
