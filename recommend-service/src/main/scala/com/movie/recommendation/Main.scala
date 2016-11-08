@@ -20,5 +20,5 @@ object Main extends App {
   val log = Logging(system, getClass)
   val service = system.actorOf(Props[MovieServiceActor], "movie-recommend-service")
   implicit val timeout = Timeout(5.seconds)
-  IO(Http) ? Http.Bind(service, interface = "0.0.0.0", port = 18080)
+  IO(Http) ? Http.Bind(service, interface = "0.0.0.0", port = 8080)
 }
