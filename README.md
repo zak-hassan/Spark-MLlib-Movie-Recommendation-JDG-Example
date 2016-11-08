@@ -3,6 +3,10 @@ Still in development DO NOT USE!
 
 [![Build Status](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example.svg?branch=master)](https://travis-ci.org/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example)
 
+## Screencast of Demo:
+![alt tag](https://media.githubusercontent.com/media/zmhassan/Spark-MLlib-Movie-Recommendation-JDG-Example/master/JDG_SPARK_DEMO.gif)
+
+
 ## Prerequisite:
 
 Download the following:
