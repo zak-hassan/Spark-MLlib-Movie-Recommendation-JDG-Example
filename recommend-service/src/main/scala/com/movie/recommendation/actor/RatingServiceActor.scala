@@ -46,14 +46,35 @@ class RatingServiceActor(requestContext: RequestContext) extends Actor {
       val cache= cacheManager.getCache[Int, Rating]()
       val list=ListBuffer.empty[Rating]
 
-      log.info(s"page: $page ")
+
+      val size = cache.size()
+      var start=0
+      var end=0
 
 
-      for( i <- (0 to 5)){
-        list+=cache.get(i)
-        log.info(s"Num: $i")
+      //If its the first page I will check if ratings are
+      if(size == 1){
+        start = 0
+        if(size <= 10)
+          end = size
+        else
+          end = 10
+      }else{
+        end=page * 10
+        if(end >= size)
+          end=size-1
+        start=end-9
       }
 
+      log.info(s"page: $page ")
+
+      if(size != 0 && end <=size){
+
+        for( i <- (start to end)){
+          log.info(s"Num: $i")
+          list+=cache.get(i)
+        }
+      }
       requestContext.complete(list.toList)
       //requestContext.complete(list.collect())
       context.stop(self)
