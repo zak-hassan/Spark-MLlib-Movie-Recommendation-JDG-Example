@@ -160,18 +160,10 @@ object App {
     val rec =   model.recommendProductsForUsers(5)
     val config = new Properties
     config.put("infinispan.rdd.cacheName","default")
-    config.put("infinispan.client.hotrod.server_list","127.0.0.1:11222")
+    config.put("infinispan.client.hotrod.server_list",s"${params.infinispanHost}:11222")
 
-     val builder = new ConfigurationBuilder();
-     //TODO: Get URL and port from env.
 
      println(s"HOST IP FOR JDG: ${params.infinispanHost}")
-
-     builder.addServer().host(params.infinispanHost).port(11222);
-
-     val cacheManager = new RemoteCacheManager(builder.build())
-     val cache= cacheManager.getCache[Int, Rating]()
-     var count=0
 
      /**
        * This will store users in infinispan Tuples
@@ -199,9 +191,6 @@ object App {
        */
      println("Sending ratings to infinispan")
      rec.writeToInfinispan(config)
-     println(s"Cache Size: ${cache.size()}")
-    println(s" Cache Stats: ${cache.stats().getStatsMap()} ")
-
      sc.stop()
   }
 
