@@ -54,11 +54,6 @@
           <artifactId>infinispan-spark_2.11</artifactId>
           <version>0.4</version>
       </dependency>
-      <dependency>
-          <groupId>org.infinispan</groupId>
-          <artifactId>infinispan-remote</artifactId>
-          <version>${infinispan.version}</version>
-      </dependency>
       <!-- Test -->
     <dependency>
       <groupId>junit</groupId>

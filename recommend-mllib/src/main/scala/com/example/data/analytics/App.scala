@@ -1,16 +1,18 @@
 package com.example.data.analytics
 
-import scala.collection.mutable
-import org.apache.log4j.{Level, Logger}
-import scopt.OptionParser
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
-import org.apache.spark.rdd.RDD
 import java.util.Properties
 
+import org.apache.log4j.{Level, Logger}
+import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
+import org.apache.spark.rdd.RDD
+import org.apache.spark.{SparkConf, SparkContext}
 import org.infinispan.client.hotrod.RemoteCacheManager
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder
+import org.infinispan.spark._
 import org.infinispan.spark.rdd.InfinispanRDD
+import scopt.OptionParser
+
+import scala.collection.mutable
 
  /**
  * @author ${user.name}
@@ -157,35 +159,38 @@ object App {
 
     val rec =   model.recommendProductsForUsers(5)
     val config = new Properties
-    config.put("infinispan.rdd.cacheName","my-cache")
-    config.put("infinispan.client.hotrod.server_list","127.0.0.1:11522")
+    config.put("infinispan.rdd.cacheName","default")
+    config.put("infinispan.client.hotrod.server_list",s"${params.infinispanHost}:11222")
 
-     val builder = new ConfigurationBuilder();
-     //TODO: Get URL and port from env.
 
      println(s"HOST IP FOR JDG: ${params.infinispanHost}")
 
-     builder.addServer().host(params.infinispanHost).port(11222);
+     /**
+       * This will store users in infinispan Tuples
+       * It will group top 5 ratings for each user into an array of ratings:
 
-     val cacheManager = new RemoteCacheManager(builder.build())
-     val cache= cacheManager.getCache[Int, Rating]()
-     var count=0
 
+       TO query these ratings inside spark-shell use this code below:
+        infinispanRDD.values.foreach((y:Array[Rating])=> {
+            y.foreach( r => println(s" Users : ${r.user}  Products : ${r.product} Ratings : ${r.rating}"))
+        })
+
+       Sample results from spark-shell
+
+         Users : 6  Products : 32 Ratings : 1.0510447450206075
+         Users : 6  Products : 90 Ratings : 0.9749995751375713
+         Users : 6  Products : 18 Ratings : 0.9380721624533743
+         Users : 6  Products : 94 Ratings : 0.9357938319678398
+         Users : 6  Products : 75 Ratings : 0.8885620997440009
+
+         Users : 9  Products : 32 Ratings : 1.1397463448164196
+         Users : 9  Products : 90 Ratings : 1.0572591273174066
+         Users : 9  Products : 18 Ratings : 1.0172074525044437
+         Users : 9  Products : 94 Ratings : 1.014723794130484
+         Users : 9  Products : 75 Ratings : 0.9634984693013102
+       */
      println("Sending ratings to infinispan")
-     rec.collect().foreach((rec)=>{
-        //(rec: RDD[(Int, Array[Rating])])
-       rec._2.foreach(r=>{
-         println(s" Users : ${r.user}  Products : ${r.product} Ratings : ${r.rating}")
-         cache.put(count,r)
-         count= count +1
-       })
-     })
-
-      println(s"Cache Size: ${cache.size()}")
-
-
-    println(s" Cache Stats: ${cache.stats().getStatsMap()} ")
-
+     rec.writeToInfinispan(config)
      sc.stop()
   }
 
