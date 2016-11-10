@@ -1,54 +1,26 @@
-<div id="view1" ng-controller="View1Ctrl as topRatings" <h3>Rent a movie</h3>
-
-
+<div id="view1" ng-controller="View1Ctrl as topRatings">
     <div class="panel panel-default" style="margin: 20px;">
         <div class="panel-body">
-            <form>
-
                 <div class="form-group">
                     <label for="userSelect">Select User</label>
-                    <select class="form-control" id="userSelect">
-
-                    </select>
+                    <select ng-model="userSelect"  class="form-control" id="userSelect"
+                    data-ng-options="item as item.label for item in items track by item.id">
+                     </select>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
+                <button type="submit" ng-click="loadList(userSelect)" class="btn btn-primary">Submit</button>
             <!-- Recommended starts -->
-
             <h2 id="recTitle">Recommended Products for User</h2>
             <div id="recommendedItems">
-
-
                 <div ng-repeat="ratings in topRatings.topRatedMovies" class="boxGrid col-xs-6 col-sm-2">
                     {{ ratings.user }}
                     <br /> {{ ratings.product }}
                     <br /> {{ ratings.rating }}
                     <br />
                 </div>
-
             </div>
             <!-- Recommended ends -->
-
         </div>
     </div>
-
-    <script>
-        var getSelectUser = function() {
-            $("#userSelect").val()
-        };
-
-        $(function() {
-            for (var i = 0; i < 30; i++) {
-                $("#userSelect").append($('<option>', {
-                    value: i,
-                    text: "" + i
-                }));
-            }
-        });
-    </script>
-
     <style>
         .boxGrid {
             border: 1px solid grey;
@@ -56,3 +28,4 @@
             height: 200px;
         }
     </style>
+</div>
