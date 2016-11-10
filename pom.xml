@@ -9,9 +9,6 @@
 	<name>SparkMLlibExmple :: Movie Recommender :: Parent</name>
 	<description>SparkMLlibExample Parent Module</description>
 	<modules>
-		<module>recommend-service</module>
 		<module>recommend-mllib</module>
 	</modules>
 </project>
-
-
