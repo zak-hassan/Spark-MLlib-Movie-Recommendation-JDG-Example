@@ -13,23 +13,48 @@
  <link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css">
  <link rel="stylesheet" href="/assets/app.css">
  <link rel="stylesheet" href="/assets/bower_components/angular-datatables/dist/css/angular-datatables.css">
- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+  <!-- Patternfly-->
+ <link rel="stylesheet" href="/assets/bower_components/patternfly/dist/css/patternfly.min.css">
+<link rel="stylesheet" href="/assets/bower_components/patternfly/dist/css/patternfly-additions.min.css">
+<link rel="stylesheet" href="/assets/bower_components/angular-patternfly/dist/styles/angular-patternfly.min.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
- <div class="container-fluid">
-  <div class="navbar-header">
-   <div class="navbar-brand" href="#">
-   Movie Recommender
-   </div>
-   <p class="navbar-text">
-   <a href="#!/view1">Rent Movie</a></p>
-   <p class="navbar-text">
-   <a href="#!/view2">Load Data</a>
-</p>
-  </div>
- </div>
-</nav>
+
+
+
+<nav class="navbar navbar-default navbar-pf" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Movie Recommender</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-utility">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="pficon pficon-user"></span> {{globals.currentUser.username || 'Not logged in'}}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a ng-click="logout()">{{logout}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-primary">
+                <li ng-class="{active: isActive('/metadata')}">
+                  <a href="#!/view1">Rate Movie</a></p>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
 
 
 <!--[if lt IE 7]>
@@ -49,12 +74,16 @@
 <script src="/assets/bower_components/angular-route/angular-route.js"></script>
 <script src="/assets/app.js"></script>
 <script src="/assets/view1/view1.js"></script>
-<script src="/assets/view2/view2.js"></script>
+<script src="/assets/services/dataservice.js"></script>
+<!-- <script src="/assets/view2/view2.js"></script> -->
 <script src="/assets/components/version/version.js"></script>
 <script src="/assets/components/version/version-directive.js"></script>
 <script src="/assets/components/version/interpolate-filter.js"></script>
 
 <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+
+    <script src="/assets/bower_components/patternfly/dist/js/patternfly.min.js"></script>
+
 </body>
 </html>
