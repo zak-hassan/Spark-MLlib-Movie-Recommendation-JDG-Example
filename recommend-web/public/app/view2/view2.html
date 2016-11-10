@@ -1,0 +1,62 @@
+<h3>View Recommended Movies Results</h3>
+
+
+<div class="alert alert-danger" role="alert" id="jdgOffline" style="display: none;">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Infinispan JDG is not currently running. Unable to fetch results from cache.
+</div>
+
+<div class="panel panel-default" style="margin: 20px;">
+    <div class="panel-body">
+<div class="form-group">
+    <label for="userSelect">Select User</label>
+    <select class="form-control" id="userSelect">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+</div>
+
+</div>
+    </div>
+<div class="panel panel-default" style="margin: 20px;">
+    <div class="panel-body">
+<table id="datatable1" class="row-border hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>Foo</td>
+        <td>Bar</td>
+    </tr>
+    <tr>
+        <td>123</td>
+        <td>Someone</td>
+        <td>Youknow</td>
+    </tr>
+    <tr>
+        <td>987</td>
+        <td>Iamout</td>
+        <td>Ofinspiration</td>
+    </tr>
+    </tbody>
+
+</table>
+    <script type="application/javascript">
+$(document).ready(function() {
+    $('#datatable1').DataTable();
+} );
+
+
+    </script>
+        </div>
+    </div>
