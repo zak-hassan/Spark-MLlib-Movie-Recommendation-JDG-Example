@@ -47,8 +47,11 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-primary">
-                <li ng-class="{active: isActive('/metadata')}">
-                  <a href="#!/view1">Rate Movie</a></p>
+                <li ng-class="{active: isActive('/ratingreport')}">
+                  <a href="#!/view1">Movie Rating</a></p>
+                </li>
+                <li ng-class="{active: isActive('/addRating')}">
+                  <a href="#!/view2">Add Rating</a></p>
                 </li>
 
             </ul>
@@ -75,7 +78,7 @@
 <script src="/assets/app.js"></script>
 <script src="/assets/view1/view1.js"></script>
 <script src="/assets/services/dataservice.js"></script>
-<!-- <script src="/assets/view2/view2.js"></script> -->
+<script src="/assets/view2/view2.js"></script>
 <script src="/assets/components/version/version.js"></script>
 <script src="/assets/components/version/version-directive.js"></script>
 <script src="/assets/components/version/interpolate-filter.js"></script>

@@ -8,8 +8,9 @@ import org.infinispan.client.hotrod.configuration.ConfigurationBuilder
 import play.api._
 import play.api.mvc._
 import org.slf4j.LoggerFactory
-import play.api.libs.json.{JsValue, Json, Writes}
-
+import play.api.libs.json._
+import services.RatingService
+import play.api.libs.functional.syntax._
 import scala.collection.mutable.ListBuffer
 /**
   * Create a Rating wrapper when returning json results to allow for providing total items in cache
@@ -40,6 +41,32 @@ class MovieController @Inject() extends Controller with RatingJSONWritable {
     val size = cache.size()
     logger.info(s"Size of cache: $size")
     Ok(Json.toJson(RatingWrapper(list.toList,size)))
+  }
+/**
+Create service that will append to this file on
+$user $product $rating
+2::22::1
+
+*/
+implicit val ratingReads: Reads[Rating] = (
+    (JsPath \ "user").read[Int] and
+    (JsPath \ "product").read[Int] and
+    (JsPath \ "rating").read[Double]
+  )(Rating.apply _ )
+
+
+
+  def addRating= Action (BodyParsers.parse.json) { request =>
+    val ratingResult = request.body.validate[Rating]
+    ratingResult.fold(
+      errors => {
+        BadRequest(Json.obj("status" ->"KO", "message" -> JsError.toJson(errors)))
+      },
+      rating => {
+        RatingService.save(rating)
+        Ok(Json.obj("status" ->"OK", "message" -> ("Place '"+rating.user+"' saved.") ))
+      }
+    )
   }
 
   def fetchRemoteCache: RemoteCache[Int, Array[Rating]] = {

@@ -14,3 +14,5 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public/a
 
 GET     /movie/user/$id<[0-9]+>      controllers.MovieController.Ratings(id:Long)
 GET     /movie/admin                 controllers.MovieController.Admin
+
+POST     /rating/add                 controllers.MovieController.addRating
