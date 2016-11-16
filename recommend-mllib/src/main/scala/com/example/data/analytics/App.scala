@@ -88,6 +88,7 @@ object App {
       conf.registerKryoClasses(Array(classOf[mutable.BitSet], classOf[Rating]))
         .set("spark.kryoserializer.buffer", "8m")
     }
+
     val sc = new SparkContext(conf)
 
     Logger.getRootLogger.setLevel(Level.WARN)
