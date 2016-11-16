@@ -5,8 +5,34 @@
     function movieDataService($http, $q) {
         return {
             getMovieById: getMovieById,
-            updateUserList: updateUserList
+            updateUserList: updateUserList,
+            addRating:addRating
         };
+
+
+        function addRating(user, product, rating){
+
+            var request= $http({
+                method:"post",
+                url:"/rating/add",
+                data:{
+                     user: parseInt(user),
+                     product: parseInt(rating),
+                     rating: parseFloat(rating)
+                   }
+                });
+
+             return (request.then(function(res) {
+                console.dir(res);
+                return (res);
+            },
+
+            function(response) {
+                console.log("error");
+            }
+          ));
+
+        }
 
         function getMovieById(i) {
             var request = $http({

@@ -10,8 +10,8 @@
 <div class="panel panel-default" style="margin: 20px;">
     <div class="panel-body">
 <div class="form-group">
-    <label for="userSelect">Select User</label>
-    <select class="form-control" id="userSelect">
+    <label for="userRatingSelect">Select User</label>
+    <select  ng-model="userRatingSelect"class="form-control" id="userRatingSelect">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -20,8 +20,8 @@
     </select>
 </div>
 <div class="form-group">
-    <label for="userProduct">Select Product</label>
-    <select class="form-control" id="userProduct">
+    <label for="userRatingProduct">Select Product</label>
+    <select ng-model="userRatingProduct" class="form-control" id="userRatingProduct">
         <option>1</option>
         <option>2</option>
         <option>3</option>
@@ -32,7 +32,7 @@
 
 <div class="form-group">
     <label for="userRating">Select Rating</label>
-    <select class="form-control" id="userSelect">
+    <select ng-model="userRating" class="form-control" id="userRating">
         <option value="5">Must see</option>
         <option value="4">Will enjoy</option>
         <option value="3">It's okay</option>
@@ -40,6 +40,10 @@
         <option value="1">Awful</option>
     </select>
 </div>
+
+        <button type="submit" ng-click="addRating(userRatingSelect, userRatingProduct,userRating )" class="btn btn-primary">Submit</button>
+
+
 
 
 <!--
