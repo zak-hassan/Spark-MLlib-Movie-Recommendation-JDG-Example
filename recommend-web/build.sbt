@@ -1,3 +1,6 @@
+import sbtassembly.AssemblyPlugin._
+
+
 name := """recommend-web"""
 
 version := "1.0-SNAPSHOT"
@@ -13,9 +16,9 @@ libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+  "org.apache.spark" % "spark-mllib_2.11" % "2.0.0",
+  "org.infinispan" % "infinispan-remote" % "8.3.0.Final-redhat-1",
+  "org.mongodb.scala" %% "mongo-scala-driver" % "1.1.1"
 )
 
-libraryDependencies += "org.apache.spark" % "spark-mllib_2.11" % "2.0.0"
-
-libraryDependencies += "org.infinispan" % "infinispan-remote" % "8.3.0.Final-redhat-1"
