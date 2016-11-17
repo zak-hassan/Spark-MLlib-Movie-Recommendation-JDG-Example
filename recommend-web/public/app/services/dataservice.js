@@ -9,7 +9,6 @@
             addRating:addRating
         };
 
-
         function addRating(user, product, rating){
 
             var request= $http({

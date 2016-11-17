@@ -38,6 +38,12 @@ class MovieController @Inject() extends Controller
     Ok(views.html.index())
   }
 
+
+  def ExportRatings() = Action {
+    RatingService.exportRatings()
+    Ok("Exporting in progress")
+  }
+
   def Ratings(id: Long) = Action {
     logger.info(s"request resource with id: $id")
     val cache: RemoteCache[Int, Array[Rating]] = fetchRemoteCache
@@ -57,6 +63,7 @@ class MovieController @Inject() extends Controller
       (JsPath \ "product").read[Int] and
       (JsPath \ "rating").read[Double]
     ) (Rating.apply _)
+
 
 
   def addRating = Action(BodyParsers.parse.json) { request =>
