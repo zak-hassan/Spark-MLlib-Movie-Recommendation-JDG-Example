@@ -16,3 +16,5 @@ GET     /movie/user/$id<[0-9]+>      controllers.MovieController.Ratings(id:Long
 GET     /movie/admin                 controllers.MovieController.Admin
 
 POST     /rating/add                 controllers.MovieController.addRating
+
+GET     /export/rating               controllers.MovieController.ExportRatings
