@@ -58,6 +58,19 @@ object RatingRepo {
     pw.close()
   }
 
+  // Display first 10 results:
+
+  def DisplayCustomRatings(): List[Rating] ={
+    val mc = MongoClient(DB_MONGO_URI)
+    //TODO: should make these lazy val's
+    val collection= connect(mc)
+
+    collection.find().results()
+      .map((x) => Rating(x.get("user").get.asInt32().getValue,
+        x.get("product").get.asInt32().getValue,
+        x.get("rating").get.asDouble().getValue)).toList
+
+  }
 
   def RateToDocument(r : Rating): Document  ={
     Document( "user" -> r.user , "product" -> r.product,

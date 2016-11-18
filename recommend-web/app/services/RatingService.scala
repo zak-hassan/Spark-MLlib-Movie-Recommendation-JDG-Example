@@ -11,10 +11,15 @@ object RatingService {
 
   //TODO: Implement a custom location for user and allow fo custom filename
   def exportRatings() = {
+    Logger.info(s"RatingService.exportRatingsFromMongo ")
     RatingRepo.exportRatingsFromMongo()
-    Logger.info(s"RatingService.exportRatingsFromMongo: ")
+
   }
 
+  def DisplayCustomRatings()={
+    Logger.info(s"RatingService.DisplayCustomRatings ")
+    RatingRepo.DisplayCustomRatings()
+  }
 
   def save(rating:Rating): Unit ={
      RatingRepo.save(rating)
