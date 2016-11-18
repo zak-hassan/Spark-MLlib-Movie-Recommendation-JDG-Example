@@ -44,6 +44,11 @@ class MovieController @Inject() extends Controller
     Ok("Exporting in progress")
   }
 
+  def DisplayCustomRatings()=Action{
+    val list:List[Rating]=RatingService.DisplayCustomRatings()
+    Ok(Json.toJson(RatingWrapper(list,list.size) ) )
+  }
+
   def Ratings(id: Long) = Action {
     logger.info(s"request resource with id: $id")
     val cache: RemoteCache[Int, Array[Rating]] = fetchRemoteCache

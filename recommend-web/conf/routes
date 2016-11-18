@@ -17,4 +17,6 @@ GET     /movie/admin                 controllers.MovieController.Admin
 
 POST     /rating/add                 controllers.MovieController.addRating
 
-GET     /export/rating               controllers.MovieController.ExportRatings
+GET     /rating/export               controllers.MovieController.ExportRatings
+
+GET     /rating/custom               controllers.MovieController.DisplayCustomRatings
