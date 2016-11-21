@@ -22,18 +22,31 @@ view1App.directive('barchart', function() {
         // observe and manipulate the DOM
         link: function($scope, element, attrs) {
 
+    $scope.$watch('myModel', function(newVal, oldVal){
+
+        console.log("Data Changed!");
+
+        $("#myModel").empty();
+
             var data = $scope[attrs.data],
                 xkey = $scope[attrs.xkey],
                 ykeys= $scope[attrs.ykeys],
                 labels= $scope[attrs.labels];
-
-            Morris.Bar({
+    console.log("datadir");
+        console.dir(data);
+        if(data != 'undefined' ){
+            if( data.length != 0){
+                Morris.Bar({
                     element: element,
                     data: data,
                     xkey: xkey,
                     ykeys: ykeys,
                     labels: labels
                 });
+            }
+          }
+
+       });
 
         }
 
@@ -53,15 +66,6 @@ function view1Ctrl($scope ,movieDataService) {
 
    $scope.labels = ['Total Tasks'];
 
-   $scope.myModel = [
-     { range: 'Product 1', total_tasks: 1.002  },
-     { range: 'Product 2', total_tasks: 0.97  },
-     { range: 'Product 3', total_tasks: 0.93  },
-     { range: 'Product 4', total_tasks: 0.87  },
-     { range: 'Product 5', total_tasks: 0.77  }
-    ];
-
-
 
     $scope.items = []
 
@@ -71,9 +75,9 @@ function view1Ctrl($scope ,movieDataService) {
 
     $scope.userSelect = $scope.items[0];
 
-    movieDataService.getMovieById(1).then(function(ratings) {
-        that.topRatedMovies = ratings;
-    });
+//    movieDataService.getMovieById(1).then(function(ratings) {
+//        that.topRatedMovies = ratings;
+//    });
 
     $scope.loadList=function(item){
        movieDataService.getMovieById(item.id).then(function(ratings) {
