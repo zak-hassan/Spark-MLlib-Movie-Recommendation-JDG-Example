@@ -1,15 +1,32 @@
 <div id="view1" ng-controller="View1Ctrl as topRatings">
+
+
     <div class="panel panel-default" style="margin: 20px;">
         <div class="panel-body">
-                <div class="form-group">
-                    <label for="userSelect">Select User</label>
-                    <select ng-model="userSelect"  class="form-control" id="userSelect"
-                    data-ng-options="item as item.label for item in items track by item.id">
-                     </select>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Display Report</h3>
                 </div>
-                <button type="submit" ng-click="loadList(userSelect)" class="btn btn-primary">Submit</button>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="userSelect">Select User</label>
+                        <select ng-model="userSelect"  class="form-control" id="userSelect"
+                                data-ng-options="item as item.label for item in items track by item.id">
+                        </select>
+                    </div>
+                    <button id="loadGraph" type="submit" ng-click="loadList(userSelect)" class="btn btn-primary">Submit</button>
+
+                </div>
+            </div>
+
+
+
             <!-- Recommended starts -->
             <h2 id="recTitle">Recommended Products for User</h2>
+
+            <div id="alert" style="display:none" class="alert alert-danger" role="alert">JDG is not currently running unable to fetch results. JDG may be offline. </div>
+
             <div id="recommendedItems">
                 <div ng-repeat="ratings in topRatings.topRatedMovies" class="boxGrid col-xs-6 col-sm-2">
                     {{ ratings.user }}
@@ -19,7 +36,7 @@
                 </div>
             </div>
 
-            <barchart  ui-if="myModel" xkey="xkey" ykeys="ykeys" labels="labels" data="myModel"></barchart>
+            <barchart  ui-if="myModel" id="myModel" xkey="xkey" ykeys="ykeys" labels="labels" data="myModel"></barchart>
 
 
             <!-- Recommended ends -->

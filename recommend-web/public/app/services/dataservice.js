@@ -45,6 +45,9 @@
                 },
                 function(response) {
                     console.log("error");
+                     $("#alert").show();
+                     $('#loadGraph').prop('disabled', true);
+
                 }
             ));
         }
