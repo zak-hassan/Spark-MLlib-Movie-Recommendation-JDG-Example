@@ -89,7 +89,7 @@ class MovieController @Inject() extends Controller
   def fetchRemoteCache: RemoteCache[Int, Array[Rating]] = {
 
     val builder = new ConfigurationBuilder();
-    val JdgIp = sys.env.get("JDG_HOST_IP").mkString("")
+    val JdgIp = sys.env.get("RECOMMEND_SERVICE_SERVICE_HOST").mkString("")
     builder.addServer().host(JdgIp).port(11222);
     val cacheManager = new RemoteCacheManager(builder.build())
     val cache = cacheManager.getCache[Int, Array[Rating]]()
