@@ -1,5 +1,3 @@
-import sbtassembly.AssemblyPlugin._
-
 
 name := """recommend-web"""
 
@@ -11,7 +9,6 @@ scalaVersion := "2.11.7"
 
 resolvers += "Red Hat Tech Preview" at "http://maven.repository.redhat.com/techpreview/all/"
 
-
 libraryDependencies ++= Seq(
   jdbc,
   cache,
@@ -21,4 +18,3 @@ libraryDependencies ++= Seq(
   "org.infinispan" % "infinispan-remote" % "8.3.0.Final-redhat-1",
   "org.mongodb.scala" %% "mongo-scala-driver" % "1.1.1"
 )
-
