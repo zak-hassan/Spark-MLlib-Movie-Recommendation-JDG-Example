@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: recommend-mllib
+spec:
+  parallelism: 1
+  completions: 1
+  template:
+    metadata:
+      name: recommend-mllib
+    spec:
+      containers:
+      - name: recommend-mllib-job
+        image: docker.io/metadatapoc/recommend-mllib
+        env:
+          - name: SPARK_MASTER_URL
+            value: "spark://172.30.187.183:7077"
+          - name: RECOMMEND_SERVICE_SERVICE_HOST
+            value: 172.30.23.108
+      restartPolicy: Never
