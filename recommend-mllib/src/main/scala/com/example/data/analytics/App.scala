@@ -161,8 +161,8 @@ object App {
     val rec =   model.recommendProductsForUsers(5)
     val config = new Properties
     config.put("infinispan.rdd.cacheName","default")
-    config.put("infinispan.client.hotrod.server_list",s"${params.infinispanHost}:11222")
-
+    config.put("infinispan.client.hotrod.server_list",s"${params.infinispanHost}")
+    //config.put("infinispan.client.hotrod.server_list", Seq("${params.infinispanHost}", 11333).mkString(":"))
 
      println(s"HOST IP FOR JDG: ${params.infinispanHost}")
 
@@ -209,4 +209,5 @@ object App {
     }.join(data.map(x => ((x.user, x.product), x.rating))).values
     math.sqrt(predictionsAndRatings.map(x => (x._1 - x._2) * (x._1 - x._2)).mean())
   }
+  
 }

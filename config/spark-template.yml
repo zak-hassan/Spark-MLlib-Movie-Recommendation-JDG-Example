@@ -90,7 +90,7 @@ objects:
 parameters:
 - name: SPARK_IMAGE
   description: Name of the Spark master/worker image
-  value: docker.io/metadatapoc/spark:latest
+  value: docker.io/radanalyticsio/openshift-spark
 - name: MASTER_NAME
   description: master name used as a service name and a selector
   generate: expression
@@ -101,4 +101,3 @@ parameters:
   generate: expression
   from: "spark-worker-[a-z0-9]{4}"
   required: true
-

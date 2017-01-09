@@ -27,9 +27,29 @@ services:
     container_name: sparkSlave
     links:
       - sparkMaster:master
+  elasticsearch:
+    image: elasticsearch
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+  kibana:
+    image: kibana
+    container_name: kibana
+    links:
+      - elasticsearch:elasticsearch
   recommend-service:
     build:
       context: ./recommend-web
       dockerfile: Dockerfile
     ports:
       - "9000:9000"
+  recommend-mllib:
+    build:
+      context: ./recommend-mllib
+      dockerfile: Dockerfile
+    links:
+      - sparkMaster:sparkMaster
+      - infinispan1:infinispan1
+    environment:
+      - SPARK_MASTER_URL=sparkMaster
+      - RECOMMEND_SERVICE_SERVICE_HOST=infinispan1

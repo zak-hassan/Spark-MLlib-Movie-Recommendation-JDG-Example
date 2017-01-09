@@ -11,12 +11,13 @@ spec:
     spec:
       containers:
       - name: recommend-mllib-job
-        image: docker.io/metadatapoc/recommend-mllib
+        image: docker.io/metadatapoc/recommend-mllib:latest
+        imagePullPolicy: "Always"
         env:
           - name: SPARK_MASTER_URL
-            value: "spark://172.30.0.180:7077"
+            value: "spark://172.30.191.145:7077"
           - name: RECOMMEND_SERVICE_SERVICE_HOST
-            value: 172.30.23.108:11333
+            value: "172.30.177.204"
           - name: SPARK_USER
             value: bob
       restartPolicy: Never
