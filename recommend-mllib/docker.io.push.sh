@@ -1,6 +1,7 @@
 #!/bin/sh
 VERSION="1.0.0-SNAPSHOT"
-AUTHOR="Zak Hassan <zak.hassan@redhat.com>"
+MAINTAINERS="Zak Hassan"
+COMPONENT="recommend-service"
 
 
 cat << 'EOF'
@@ -19,6 +20,16 @@ cat << 'EOF'
 
 EOF
 
-#sbt package
-#mvn clean install
-docker   build   -t  zmhassan/recommend-service .
+echo " "
+echo "Maintainers: $MAINTAINERS"
+echo " "
+echo "Version: $VERSION"
+echo " "
+echo "Component: $COMPONENT"
+echo " "
+echo "Building Containers and pushing docker images to docker registry"
+echo " "
+docker   build  --rm -t  recommend-mllib  .
+
+docker tag  recommend-mllib  docker.io/metadatapoc/recommend-mllib
+docker push  docker.io/metadatapoc/recommend-mllib

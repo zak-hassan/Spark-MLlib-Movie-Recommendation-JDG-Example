@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: spark-batch-job
+  annotations:
+    description: "Spark Batch Job"
+    iconClass: "icon-shadowman"
+    tags: "job,prune,spark"
+objects:
+- apiVersion: batch/v2alpha1
+  kind: Job
+  metadata:
+    name: ${JOB_NAME}
+  spec:
+    parallelism: 1
+    completions: 1
+    template:
+      metadata:
+        name: ${JOB_NAME}
+      spec:
+        containers:
+        - name: ${JOB_NAME}-job
+          image: docker.io/metadatapoc/recommend-mllib:latest
+          imagePullPolicy: "Always"
+          env:
+            - name: SPARK_MASTER_URL
+              value: "spark://${SPARK_IP_ADDR}:7077"
+            - name: RECOMMEND_SERVICE_SERVICE_HOST
+              value: "${JDG_IP_ADDR}"
+            - name: SPARK_USER
+              value: bob
+        restartPolicy: Never
+parameters:
+- description: Unique Job Name
+  name: JOB_NAME
+- description: JDG IP Address
+  name: JDG_IP_ADDR
+- description: Spark IP Address
+  name: SPARK_IP_ADDR
+labels:
+  template: spark-batch-job

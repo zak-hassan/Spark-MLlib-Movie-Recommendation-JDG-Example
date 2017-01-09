@@ -68,7 +68,7 @@
                 "spec": {
                     "containers": [{
                       "name": "infinispan-jdg-server",
-                      "image": "docker.io/jboss/infinispan-server:8.2.3.Final",
+                      "image": "docker.io/jboss/infinispan-server:9.0.0.Beta1",
                       "ports": [{
                         "containerPort": 11222
                       }]

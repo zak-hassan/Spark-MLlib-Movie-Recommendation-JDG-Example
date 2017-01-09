@@ -9,8 +9,8 @@ resolvers += "Red Hat Tech Preview" at "http://maven.repository.redhat.com/techp
 
 
 libraryDependencies ++= Seq(
-  "org.apache.spark" % "spark-core_2.11" % "2.0.0",
-  "org.apache.spark" % "spark-mllib_2.11" % "2.0.0",
+  "org.apache.spark" % "spark-core_2.11" % "2.0.1",
+  "org.apache.spark" % "spark-mllib_2.11" % "2.0.1",
   "org.infinispan" % "infinispan-spark_2.11" % "0.4",
  "com.github.scopt" % "scopt_2.11" % "3.5.0",
   "org.specs2" % "specs2-core_2.11" % "3.8.6"  % "test",
