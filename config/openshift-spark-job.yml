@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: recommend-mllib
+  name: recommend-mllib-scheduled
 spec:
   parallelism: 1
   completions: 1
@@ -15,9 +15,9 @@ spec:
         imagePullPolicy: "Always"
         env:
           - name: SPARK_MASTER_URL
-            value: "spark://172.30.191.145:7077"
+            value: "spark://instance:7077"
           - name: RECOMMEND_SERVICE_SERVICE_HOST
-            value: "172.30.177.204"
+            value: "jboss-datagrid-service"
           - name: SPARK_USER
             value: bob
       restartPolicy: Never

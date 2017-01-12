@@ -1,0 +1,22 @@
+apiVersion: batch/v2alpha1
+kind: ScheduledJob
+metadata:
+  name: sparkrecommendcron
+spec:
+  schedule: "*/5 * * * ?"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: pi
+            image: docker.io/metadatapoc/recommend-mllib:latest
+            imagePullPolicy: "Always"
+            env:
+              - name: SPARK_MASTER_URL
+                value: "spark://instance:7077"
+              - name: RECOMMEND_SERVICE_SERVICE_HOST
+                value: "jboss-datagrid-service"
+              - name: SPARK_USER
+                value: bob
+          restartPolicy: Never
