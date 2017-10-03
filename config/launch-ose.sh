@@ -1,0 +1,8 @@
+#!/bin/bash
+
+oc cluster up --metrics --logging
+oc login -u system:admin
+oc adm policy add-cluster-role-to-user  admin developer
+oc create -f spark-template.yml
+oc create -f spark-recommend-template.yml
+oc edit scc restricted
