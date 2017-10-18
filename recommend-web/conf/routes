@@ -4,19 +4,24 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.MovieController.index
+GET     /addRating                  controllers.MovieController.index
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public/app", file: Asset)
+GET     /assets/*file               controllers.Assets.versioned(path="/public/dist", file: Asset)
 
-GET     /movie/user/$id<[0-9]+>      controllers.MovieController.Ratings(id:Long)
-GET     /movie/admin                 controllers.MovieController.Admin
+GET     /movie/user/$id<[0-9]+>     controllers.MovieController.Ratings(id:Long)
+GET     /movie/admin                controllers.MovieController.Admin
 
-POST     /rating/add                 controllers.MovieController.addRating
+POST    /rating/add                 controllers.MovieController.addRating
 
-GET     /rating/export               controllers.MovieController.ExportRatings
+GET     /rating/export              controllers.MovieController.ExportRatings
 
-GET     /rating/custom               controllers.MovieController.DisplayCustomRatings
+GET     /rating/custom              controllers.MovieController.DisplayCustomRatings
+
+POST    /rating/mock/report         controllers.MovieController.mockDisplayReport
+
+POST    /results/mock/report         controllers.MovieController.mockResultsReport

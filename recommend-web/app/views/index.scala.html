@@ -1,80 +1,66 @@
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <title>My AngularJS App</title>
- <meta name="description" content="">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.css">
- <link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css">
- <link rel="stylesheet" href="/assets/app.css">
- <link rel="stylesheet" href="/assets/bower_components/angular-datatables/dist/css/angular-datatables.css">
-  <!-- Patternfly-->
- <link rel="stylesheet" href="/assets/bower_components/patternfly/dist/css/patternfly.min.css">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>My AngularJS App</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="/assets/bower_components/bootstrap/dist/css/bootstrap-theme.css">
+<link rel="stylesheet" href="/assets/app.css">
+<link rel="stylesheet" href="/assets/bower_components/angular-datatables/dist/css/angular-datatables.css">
+<!-- Patternfly-->
+<link rel="stylesheet" href="/assets/bower_components/patternfly/dist/css/patternfly.min.css">
 <link rel="stylesheet" href="/assets/bower_components/patternfly/dist/css/patternfly-additions.min.css">
 <link rel="stylesheet" href="/assets/bower_components/angular-patternfly/dist/styles/angular-patternfly.min.css">
 <!-- PNotify -->
-    <link rel="stylesheet" href="/assets/bower_components/pnotify/dist/pnotify.css">
-
-
+<link rel="stylesheet" href="/assets/bower_components/pnotify/dist/pnotify.css">
 </head>
 <body>
-
-
-
 <nav class="navbar navbar-default navbar-pf" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Movie Recommender</a>
-        </div>
-        <div class="collapse navbar-collapse navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-utility">
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="pficon pficon-user"></span> {{globals.currentUser.username || 'Not logged in'}}
-                        <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a ng-click="logout()">{{logout}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-primary">
-                <li ng-class="{active: isActive('/ratingreport')}">
-                  <a href="#!/view1">Movie Rating</a></p>
-                </li>
-                <li ng-class="{active: isActive('/addRating')}">
-                  <a href="#!/view2">Add Rating</a></p>
-                </li>
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/">Movie Recommender</a>
+</div>
+<div class="collapse navbar-collapse navbar-collapse-1">
+<ul class="nav navbar-nav navbar-utility">
+<li class="dropdown">
+<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+<span class="pficon pficon-user"></span> {{globals.currentUser.username || 'Not logged in'}}
+<b class="caret"></b>
+</a>
+<ul class="dropdown-menu">
+<li>
+<a ng-click="logout()">{{logout}}</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav navbar-primary">
+<li ng-class="{active: isActive('/ratingreport')}">
+<a href="#!/view1">Movie Rating</a></p>
+</li>
+<li ng-class="{active: isActive('/addRating')}">
+<a href="#!/view2">Add Rating</a></p>
+</li>
 
-            </ul>
-        </div>
-    </nav>
-
-
-
+</ul>
+</div>
+</nav>
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-
 <div ng-view></div>
-
-
-
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
--->
+<!-- In production use:<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>-->
 <script src="/assets/bower_components/jquery/dist/jquery.js"></script>
 
 <script src="/assets/bower_components/angular/angular.js"></script>
@@ -84,8 +70,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 <!-- end of ma -->
-
-
 <script src="/assets/app.js"></script>
 <script src="/assets/view1/view1.js"></script>
 <script src="/assets/services/dataservice.js"></script>
@@ -97,8 +81,28 @@
 <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 
-    <script src="/assets/bower_components/patternfly/dist/js/patternfly.min.js"></script>
+<script src="/assets/bower_components/patternfly/dist/js/patternfly.min.js"></script>
 <script src="/assets/bower_components/pnotify/dist/pnotify.js"></script>
-
 </body>
+</html>*@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./assets/css/patternfly.min.css">
+        <link rel="stylesheet" href="./assets/css/patternfly-additions.min.css">
+        <link rel="stylesheet" href="./assets/css/react-bootstrap-table.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="theme-color" content="#000000">
+        <title>Spark MLib Movie Recommendation JDG Example</title>
+    </head>
+    <body class="cards-pf">
+        <div id="root"></div>
+        <script src="./assets/main.js"></script>
+        <script src="./assets/app.js"></script>
+        <noscript>
+      You need to enable JavaScript to run this app.
+        </noscript>
+    </body>
 </html>

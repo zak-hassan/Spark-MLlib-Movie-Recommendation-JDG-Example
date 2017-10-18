@@ -101,4 +101,82 @@ class MovieController @Inject() extends Controller
     Forbidden("error")
   }
 
+  case class RecMovies(user: String, product: String, rating: String)
+  implicit val recFormat: Format[RecMovies] = Json.format[RecMovies]
+
+  def mockDisplayReport = Action(BodyParsers.parse.json) { request =>
+    //using the body parser to parse request body to json
+    val jsonBody: JsValue = request.body
+    //converting json to case class
+    val rec : RecMovies = jsonBody.as[RecMovies]
+    println(s"case class ${rec}")
+
+    val mockDataSet = Json.obj(
+      "status" ->"OK",
+      "columns" -> Json.arr(
+        Json.obj("data" -> "id", "title" -> "ID"),
+        Json.obj("data" -> "fname", "title" -> "First Name"),
+        Json.obj("data" -> "lname", "title" -> "Last Name")
+      ),
+      "dataSet" -> Json.arr(
+        Json.obj("id" -> "1", "fname" -> "John", "lname" -> "Smith"),
+        Json.obj("id" -> "2", "fname" -> "Jacob", "lname" -> "Jones"),
+        Json.obj("id" -> "3", "fname" -> "David", "lname" -> "Taylor"),
+        Json.obj("id" -> "4", "fname" -> "Michael", "lname" -> "Johnson"),
+        Json.obj("id" -> "5", "fname" -> "Richard", "lname" -> "Jackson"),
+        Json.obj("id" -> "6", "fname" -> "Josh", "lname" -> "Shaw"),
+        Json.obj("id" -> "7", "fname" -> "Christian", "lname" -> "Lloyd"),
+        Json.obj("id" -> "8", "fname" -> "Lukas", "lname" -> "Ellis"),
+        Json.obj("id" -> "9", "fname" -> "Lindsay", "lname" -> "Martin"),
+        Json.obj("id" -> "10", "fname" -> "Daniel", "lname" -> "Johnston"),
+        Json.obj("id" -> "12", "fname" -> "Jerry", "lname" -> "Carr"),
+        Json.obj("id" -> "13", "fname" -> "Ian", "lname" -> "Hamilton"),
+        Json.obj("id" -> "14", "fname" -> "Warren", "lname" -> "Cox"),
+        Json.obj("id" -> "15", "fname" -> "Peter", "lname" -> "Foster"),
+        Json.obj("id" -> "16", "fname" -> "Alex", "lname" -> "Barnes"),
+        Json.obj("id" -> "17", "fname" -> "Cody", "lname" -> "Gordon")
+      )
+    )
+    Ok(mockDataSet)
+  }
+
+  case class User(user: String)
+  implicit val userFormat: Format[User] = Json.format[User]
+
+  def mockResultsReport = Action(BodyParsers.parse.json) { request =>
+    //using the body parser to parse request body to json
+    val jsonBody: JsValue = request.body
+    //converting json to case class
+    val user : User = jsonBody.as[User]
+    println(s"case class ${user}")
+
+    val mockDataSet = Json.obj(
+      "status" ->"OK",
+      "columns" -> Json.arr(
+        Json.obj("data" -> "id", "title" -> "ID"),
+        Json.obj("data" -> "movie", "title" -> "Movie Title"),
+        Json.obj("data" -> "year", "title" -> "Release Year")
+      ),
+      "dataSet" -> Json.arr(
+        Json.obj("id" -> "1", "movie" -> "Detachment", "year" -> "2004"),
+        Json.obj("id" -> "2", "movie" -> "Alexander", "year" -> "2011"),
+        Json.obj("id" -> "3", "movie" -> "Black Hawk Down", "year" -> "2001"),
+        Json.obj("id" -> "4", "movie" -> "Bourne Identity, The", "year" -> "2002"),
+        Json.obj("id" -> "5", "movie" -> "Cast Away", "year" -> "2000"),
+        Json.obj("id" -> "6", "movie" -> "Drive", "year" -> "2011"),
+        Json.obj("id" -> "7", "movie" -> "Fargo", "year" -> "1996"),
+        Json.obj("id" -> "8", "movie" -> "Full Metal Jacket", "year" -> "1987"),
+        Json.obj("id" -> "9", "movie" -> "Gattaca", "year" -> "1997"),
+        Json.obj("id" -> "10", "movie" -> "Hitch", "year" -> "2005"),
+        Json.obj("id" -> "12", "movie" -> "Matrix", "year" -> "1999"),
+        Json.obj("id" -> "13", "movie" -> "Miami Vice", "year" -> "2006"),
+        Json.obj("id" -> "14", "movie" -> "Catch Me if You Can", "year" -> "2004"),
+        Json.obj("id" -> "15", "movie" -> "Ocean's 11", "year" -> "2001"),
+        Json.obj("id" -> "16", "movie" -> "Platoon", "year" -> "2001"),
+        Json.obj("id" -> "17", "movie" -> "Romeo + Juliet", "year" -> "1996")
+      )
+    )
+    Ok(mockDataSet)
+  }
+
 }
