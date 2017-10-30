@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import Table from "../../table/TableView.jsx";
+import Table from "../../pf-lib/table/TableView.jsx";
 import { connect } from "react-redux";
 import DisplayReportForm from "../components/DisplayReportForm.jsx";
 import PropTypes from "prop-types";

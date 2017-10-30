@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Table from "../../table/TableView.jsx";
+import Table from "../../pf-lib/table/TableView.jsx";
 import { connect } from "react-redux";
 import { handleGetRec } from '../addRatingActions.js';
 import RecForm from "../components/RecForm.jsx";
