@@ -17,7 +17,7 @@ export const NAVBAR_CONFIG = {
   ],
   titleSrc: {
     path: 'assets/img/brand.svg',
-    alt: 'Radanalytics-Spark-Mlib-MovieRec-Logo'
+    alt: 'Radanalytics Spark Mlib MovieRec'
   }
 };
 
