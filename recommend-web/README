@@ -28,7 +28,25 @@ Components
 
   Shows how to use Guice to bind all the components needed by your application.
 
-- Counter.scala:
+- Counter.scala:## Usage
+
+Navigate into the root directory of the repo and add the submodule library: 
+
+`git submodule init`
+
+`git submodule update`
+
+Cd into the recommend-web/public folder and install the node modules: 
+
+`cd recommend-web/public/`
+
+`npm install`
+
+Run webpack to bundle the files by running the following command: 
+
+`npm run build` 
+
+Start the server: 
 
   An example of a component that contains state, in this case a simple counter.
 
@@ -47,3 +65,27 @@ Filters
 - ExampleFilter.scala
 
   A simple filter that adds a header to every response.
+  
+
+Usage
+=====
+
+Navigate into the root directory of the repo and add the submodule library: 
+
+`git submodule init`
+
+`git submodule update`
+
+Cd into the recommend-web/public folder and install the node modules: 
+
+`cd recommend-web/public/`
+
+`npm install`
+
+Run webpack to bundle the files by running the following command: 
+
+`npm run build` 
+
+Start the server: 
+
+`sbt run`
