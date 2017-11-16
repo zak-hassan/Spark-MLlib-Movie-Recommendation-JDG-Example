@@ -70,5 +70,11 @@ Run webpack to bundle the files by running the following command:
 
 Start the server: 
 
-
 `sbt run`
+
+If you encounter an error missing certain pf-lib dependencies ensure that you checkout master:
+
+`cd recommend-web/public/app/pf-lib`
+`git checkout master` 
+
+Then run the npm commands again. 
